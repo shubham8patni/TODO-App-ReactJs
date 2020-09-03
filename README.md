@@ -1,3 +1,22 @@
+#  A TODO list application developed in React.js (Create entry, Delete entry, Every entry has automatic date stamp)
+
+<img src="readmeimg/todo1.JPG" width="500px" height="270px" >
+
+<img src="readmeimg/todo2.JPG" width="500px" height="270px" >
+
+#  Mobile View
+
+<img src="readmeimg/todo3.JPG" width="411px" height="731px" >
+
+
+#  Click on the entry to delete it.
+
+<img src="readmeimg/todo4.JPG" width="411px" height="731px" >
+
+<img src="readmeimg/todo3.JPG" width="411px" height="731px" >
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
