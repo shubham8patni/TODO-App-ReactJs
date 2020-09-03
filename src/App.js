@@ -1,0 +1,77 @@
+import React, {Component} from 'react';
+import Note from './components/Note'
+import './App.css';
+
+class App extends Component {
+
+  constructor(props) {
+
+    var today = new Date(),
+
+    date = today.getDate()+ '-' +(today.getMonth() + 1) + '-' +today.getFullYear() ;
+    super(props);
+    this.state = {
+      currentDateTime: date,
+      noteText: '',
+      notes: [],
+    }
+  }
+
+  updateNoteText(noteText) {
+    this.setState({ noteText: noteText.target.value })
+  }
+
+  addNote() {
+        if (this.state.noteText === '') {return} /* {return} or {return false} */
+
+        let notesArr = this.state.notes ;
+        notesArr.push(this.state.currentDateTime + ":  " +  this.state.noteText );
+        this.setState({noteText: ''});
+        this.textInput.focus();
+  }
+
+  handleKeyPress = (event) =>{
+    if (event.key === 'Enter') {
+        let notesArr = this.state.notes;
+        notesArr.push(this.state.currentDateTime + ":  " +  this.state.noteText );
+        this.setState({noteText: ''});
+    }
+  }
+
+  deleteNote(index) {
+    let notesArr = this.state.notes;
+    notesArr.splice(index, 1);
+    this.setState({ notes: notesArr})
+  }
+
+  render(){
+
+    let notes = this.state.notes.map((val, key) => {
+       return <Note key={key} text={val}
+           deleteMethod={ () => this.deleteNote(key) } />
+    })
+
+    return (
+      <div className="container">
+        
+        <div className="header">React Todo Application</div>
+        {notes}
+
+        <div className="btn" onClick={this.addNote.bind(this)}> + </div>
+
+        <input type="text"
+            ref={((input) => {this.textInput = input})} 
+            className="textInput"
+            value={this.state.noteText}
+            onChange={noteText => this.updateNoteText(noteText)}
+            onKeyPress={this.handleKeyPress.bind(this)}
+            placeholder="Add Note here"
+            />
+
+
+      </div>
+    );
+  }
+}
+
+export default App;
